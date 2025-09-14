@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
 import RecipeList from './components/RecipeList'
 import AddRecipeForm from './components/AddRecipeForm'
 import RecipeDetails from './components/RecipeDetails'
 import SearchBar from './components/SearchBar'
-import FavoritesList from './components/FavoritesList'
-import RecommendationsList from './components/RecommendationsList'
+import FavouritesList from './components/FavouritesList'
+import RecommendationList from './components/RecommendationList'
 import './App.css'
 
 function App() {
@@ -13,9 +13,19 @@ function App() {
       <div className="app">
         <header>
           <h1>Recipe Sharing App</h1>
-          <nav>
-            <Link to="/">All Recipes</Link>
-            <Link to="/favorites">My Favorites</Link>
+          <nav className="main-nav">
+            <NavLink 
+              to="/" 
+              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+            >
+              All Recipes
+            </NavLink>
+            <NavLink 
+              to="/favourites" 
+              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+            >
+              My Favourites
+            </NavLink>
           </nav>
         </header>
         
@@ -25,15 +35,15 @@ function App() {
               <>
                 <AddRecipeForm />
                 <SearchBar />
-                <RecommendationsList />
+                <RecommendationList />
                 <RecipeList />
               </>
             } />
             <Route path="/recipe/:id" element={<RecipeDetails />} />
-            <Route path="/favorites" element={
+            <Route path="/favourites" element={
               <>
                 <SearchBar />
-                <FavoritesList />
+                <FavouritesList />
               </>
             } />
           </Routes>

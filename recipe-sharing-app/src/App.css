@@ -1,22 +1,6 @@
-/* Navigation Styles */
-header nav {
-  margin-top: 10px;
-}
-
-header nav a {
-  margin-right: 15px;
-  text-decoration: none;
-  color: #3498db;
-  font-weight: 600;
-}
-
-header nav a:hover {
-  text-decoration: underline;
-}
-
-/* Favorites and Recommendations Styles */
-.favorites-list,
-.recommendations-list {
+/* Change .favorites-list to .favourites-list */
+.favourites-list,
+.recommendation-list {
   background: white;
   padding: 20px;
   border-radius: 8px;
@@ -24,36 +8,16 @@ header nav a:hover {
   margin-bottom: 20px;
 }
 
-.favorites-list h2,
-.recommendations-list h2 {
+.favourites-list h2,
+.recommendation-list h2 {
   color: #2c3e50;
   margin-bottom: 15px;
   border-bottom: 2px solid #eee;
   padding-bottom: 10px;
 }
 
-/* Favorite Button Styles */
-.btn-favorite {
-  background-color: #f1c40f;
-  color: #34495e;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.btn-favorite:hover {
-  background-color: #f39c12;
-}
-
-.btn-favorite.active {
-  background-color: #e67e22;
-  color: white;
-}
-
-.btn-remove-favorite {
+/* Change .btn-remove-favorite to .btn-remove-favourite */
+.btn-remove-favourite {
   background-color: #e74c3c;
   color: white;
   border: none;
@@ -66,28 +30,6 @@ header nav a:hover {
   transition: background-color 0.3s;
 }
 
-.btn-remove-favorite:hover {
+.btn-remove-favourite:hover {
   background-color: #c0392b;
-}
-
-/* Recipe Card Updates for Favorites */
-.recipe-card {
-  position: relative;
-}
-
-/* Recipe Details Favorite Button */
-.recipe-actions .btn-favorite {
-  margin-left: 10px;
-}
-
-/* Responsive Design Updates */
-@media (max-width: 768px) {
-  .recipe-actions {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .recipe-actions .btn-favorite {
-    margin-left: 0;
-  }
 }
