@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import useRecipeStore from './recipeStore'
 import EditRecipeForm from './EditRecipeForm'
+import DeleteRecipeButton from './DeleteRecipeButton'
 import { useState } from 'react'
 
 const RecipeDetails = () => {
@@ -9,7 +10,6 @@ const RecipeDetails = () => {
   const recipe = useRecipeStore(state => 
     state.recipes.find(recipe => recipe.id === recipeId)
   )
-  const deleteRecipe = useRecipeStore(state => state.deleteRecipe)
   const [isEditing, setIsEditing] = useState(false)
 
   if (!recipe) {
@@ -19,12 +19,6 @@ const RecipeDetails = () => {
         <Link to="/">Back to recipes</Link>
       </div>
     )
-  }
-
-  const handleDelete = () => {
-    if (window.confirm('Are you sure you want to delete this recipe?')) {
-      deleteRecipe(recipeId)
-    }
   }
 
   if (isEditing) {
@@ -39,7 +33,7 @@ const RecipeDetails = () => {
         <h1>{recipe.title}</h1>
         <div className="recipe-actions">
           <button onClick={() => setIsEditing(true)} className="btn-edit">Edit</button>
-          <button onClick={handleDelete} className="btn-delete">Delete</button>
+          <DeleteRecipeButton recipeId={recipeId} />
         </div>
       </div>
       

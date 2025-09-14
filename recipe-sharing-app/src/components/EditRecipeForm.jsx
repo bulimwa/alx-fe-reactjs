@@ -12,8 +12,8 @@ const EditRecipeForm = ({ recipe, onCancel }) => {
   const [instructions, setInstructions] = useState(recipe.instructions)
   const [cookingTime, setCookingTime] = useState(recipe.cookingTime)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (event) => {
+    event.preventDefault() // Added event.preventDefault()
     
     const updatedRecipe = {
       title,
