@@ -1,18 +1,21 @@
 import { useState } from 'react'
 import useRecipeStore from './recipeStore'
+import { useNavigate } from 'react-router-dom'
 
-const AddRecipeForm = () => {
-  const addRecipe = useRecipeStore(state => state.addRecipe)
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [ingredients, setIngredients] = useState('')
-  const [instructions, setInstructions] = useState('')
-  const [cookingTime, setCookingTime] = useState('')
+const EditRecipeForm = ({ recipe, onCancel }) => {
+  const updateRecipe = useRecipeStore(state => state.updateRecipe)
+  const navigate = useNavigate()
+  
+  const [title, setTitle] = useState(recipe.title)
+  const [description, setDescription] = useState(recipe.description)
+  const [ingredients, setIngredients] = useState(recipe.ingredients.join('\n'))
+  const [instructions, setInstructions] = useState(recipe.instructions)
+  const [cookingTime, setCookingTime] = useState(recipe.cookingTime)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    const newRecipe = {
+    const updatedRecipe = {
       title,
       description,
       ingredients: ingredients.split('\n').filter(i => i.trim() !== ''),
@@ -20,71 +23,75 @@ const AddRecipeForm = () => {
       cookingTime: parseInt(cookingTime)
     }
     
-    addRecipe(newRecipe)
-    setTitle('')
-    setDescription('')
-    setIngredients('')
-    setInstructions('')
-    setCookingTime('')
+    updateRecipe(recipe.id, updatedRecipe)
+    navigate(`/recipe/${recipe.id}`)
   }
 
   return (
-    <div className="add-recipe-form">
-      <h2>Add New Recipe</h2>
+    <div className="edit-form">
+      <h2>Edit Recipe</h2>
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
+          <label htmlFor="title">Title</label>
           <input
             type="text"
+            id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Recipe Title"
             required
           />
         </div>
         
         <div className="form-group">
+          <label htmlFor="description">Description</label>
           <textarea
+            id="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Description"
             required
           />
         </div>
         
         <div className="form-group">
+          <label htmlFor="ingredients">Ingredients (one per line)</label>
           <textarea
+            id="ingredients"
             value={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
-            placeholder="Ingredients (one per line)"
             required
           />
         </div>
         
         <div className="form-group">
+          <label htmlFor="instructions">Instructions</label>
           <textarea
+            id="instructions"
             value={instructions}
             onChange={(e) => setInstructions(e.target.value)}
-            placeholder="Instructions"
             required
           />
         </div>
         
         <div className="form-group">
+          <label htmlFor="cookingTime">Cooking Time (minutes)</label>
           <input
             type="number"
+            id="cookingTime"
             value={cookingTime}
             onChange={(e) => setCookingTime(e.target.value)}
-            placeholder="Cooking Time (minutes)"
             min="1"
             required
           />
         </div>
         
-        <button type="submit">Add Recipe</button>
+        <div className="form-actions">
+          <button type="button" onClick={onCancel}>Cancel</button>
+          <button type="submit">Save Changes</button>
+        </div>
       </form>
     </div>
   )
 }
 
-export default AddRecipeForm
+export default EditRecipeForm
