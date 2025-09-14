@@ -11,6 +11,8 @@ const RecipeDetails = () => {
     state.recipes.find(recipe => recipe.id === recipeId)
   )
   const [isEditing, setIsEditing] = useState(false)
+  const isFavorite = useRecipeStore(state => state.isFavorite(recipeId))
+  const toggleFavorite = useRecipeStore(state => state.toggleFavorite)
 
   if (!recipe) {
     return (
@@ -25,6 +27,10 @@ const RecipeDetails = () => {
     return <EditRecipeForm recipe={recipe} onCancel={() => setIsEditing(false)} />
   }
 
+  const handleToggleFavorite = () => {
+    toggleFavorite(recipeId)
+  }
+
   return (
     <div className="recipe-details">
       <Link to="/" className="back-link">← Back to recipes</Link>
@@ -34,12 +40,19 @@ const RecipeDetails = () => {
         <div className="recipe-actions">
           <button onClick={() => setIsEditing(true)} className="btn-edit">Edit</button>
           <DeleteRecipeButton recipeId={recipeId} />
+          <button 
+            onClick={handleToggleFavorite} 
+            className={isFavorite ? "btn-favorite active" : "btn-favorite"}
+          >
+            {isFavorite ? "★ Remove from Favorites" : "☆ Add to Favorites"}
+          </button>
         </div>
       </div>
       
       <p className="recipe-description">{recipe.description}</p>
       
       <div className="recipe-info">
+        <p><strong>Category:</strong> {recipe.category}</p>
         <p><strong>Cooking Time:</strong> {recipe.cookingTime} minutes</p>
       </div>
       
