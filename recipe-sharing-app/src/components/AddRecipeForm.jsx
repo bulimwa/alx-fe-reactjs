@@ -3,11 +3,14 @@ import useRecipeStore from './recipeStore'
 
 const AddRecipeForm = () => {
   const addRecipe = useRecipeStore(state => state.addRecipe)
+  const categories = useRecipeStore(state => state.categories.filter(cat => cat !== 'All'))
+  
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [ingredients, setIngredients] = useState('')
   const [instructions, setInstructions] = useState('')
   const [cookingTime, setCookingTime] = useState('')
+  const [category, setCategory] = useState(categories[0] || '')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -17,7 +20,8 @@ const AddRecipeForm = () => {
       description,
       ingredients: ingredients.split('\n').filter(i => i.trim() !== ''),
       instructions,
-      cookingTime: parseInt(cookingTime)
+      cookingTime: parseInt(cookingTime),
+      category
     }
     
     addRecipe(newRecipe)
@@ -50,6 +54,18 @@ const AddRecipeForm = () => {
             placeholder="Description"
             required
           />
+        </div>
+        
+        <div className="form-group">
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            required
+          >
+            {categories.map(cat => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
         </div>
         
         <div className="form-group">
