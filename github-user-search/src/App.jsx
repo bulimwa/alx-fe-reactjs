@@ -1,6 +1,12 @@
-import axios from 'axios';
+import Search from './components/Search';
 
-export const fetchUserData = async (username) => {
-  const response = await axios.get(`https://api.github.com/users/${username}`);
-  return response.data;
-};
+function App() {
+  return (
+    <div className="min-h-screen bg-gray-100">
+      <h1 className="text-3xl font-bold text-center p-6">GitHub User Search</h1>
+      <Search />
+    </div>
+  );
+}
+
+export default App;

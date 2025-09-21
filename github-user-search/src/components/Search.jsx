@@ -7,10 +7,12 @@ function Search() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSearch = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setUser(null);
+
     try {
       const data = await fetchUserData(username);
       setUser(data);
@@ -22,25 +24,29 @@ function Search() {
   };
 
   return (
-    <div className="p-4">
-      <form onSubmit={handleSearch}>
+    <div className="p-4 max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter GitHub username"
-          className="border p-2"
+          className="flex-1 border p-2 rounded"
         />
-        <button type="submit" className="ml-2 bg-blue-500 text-white p-2">Search</button>
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
+          Search
+        </button>
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {error && <p className="text-red-500">{error}</p>}
       {user && (
-        <div className="mt-4">
-          <img src={user.avatar_url} alt="avatar" className="w-20 h-20 rounded-full" />
-          <p>{user.name}</p>
-          <a href={user.html_url} target="_blank">View Profile</a>
+        <div className="bg-white p-4 rounded shadow">
+          <img src={user.avatar_url} alt="Avatar" className="w-20 h-20 rounded-full mb-2" />
+          <h2 className="text-xl font-bold">{user.name || user.login}</h2>
+          <a href={user.html_url} target="_blank" className="text-blue-500 underline">
+            View GitHub Profile
+          </a>
         </div>
       )}
     </div>
