@@ -17,7 +17,7 @@ function Search() {
       const data = await fetchUserData(username);
       setUser(data);
     } catch {
-      setError('Looks like we can’t find the user');
+      setError('Looks like we cant find the user');
     } finally {
       setLoading(false);
     }
@@ -44,7 +44,7 @@ function Search() {
         <div className="bg-white p-4 rounded shadow">
           <img src={user.avatar_url} alt="Avatar" className="w-20 h-20 rounded-full mb-2" />
           <h2 className="text-xl font-bold">{user.name || user.login}</h2>
-          <a href={user.html_url} target="_blank" className="text-blue-500 underline">
+          <a href={user.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
             View GitHub Profile
           </a>
         </div>
