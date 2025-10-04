@@ -1,16 +1,19 @@
 import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './components/HomePage'
+import RecipeDetail from './components/RecipeDetail'
+import AddRecipeForm from './components/AddRecipeForm'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          Recipe Sharing Platform
-        </h1>
-        <p className="text-center text-gray-600">
-          Welcome to our recipe sharing community!
-        </p>
-      </div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+        <Route path="/add-recipe" element={<AddRecipeForm />} />
+      </Routes>
     </div>
   )
 }
