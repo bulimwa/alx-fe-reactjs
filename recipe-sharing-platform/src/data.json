@@ -3,32 +3,16 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop",
-    "cookingTime": 20,
-    "difficulty": "Medium"
+    "image": "https://via.placeholder.com/150",
+    "ingredients": ["Spaghetti", "Eggs", "Parmesan cheese", "Bacon", "Black pepper"],
+    "instructions": "Boil pasta. Cook bacon. Mix eggs and cheese. Combine all with pasta and season."
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
-    "summary": "Chunks of grilled chicken cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop",
-    "cookingTime": 40,
-    "difficulty": "Medium"
-  },
-  {
-    "id": 3,
-    "title": "Chocolate Chip Cookies",
-    "summary": "Soft and chewy homemade cookies loaded with chocolate chips.",
-    "image": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&h=300&fit=crop",
-    "cookingTime": 25,
-    "difficulty": "Easy"
-  },
-  {
-    "id": 4,
-    "title": "Vegetable Stir Fry",
-    "summary": "Quick and healthy stir-fried vegetables with tofu in a savory sauce.",
-    "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400&h=300&fit=crop",
-    "cookingTime": 15,
-    "difficulty": "Easy"
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://via.placeholder.com/150",
+    "ingredients": ["Chicken", "Yogurt", "Tomatoes", "Cream", "Spices"],
+    "instructions": "Marinate chicken. Grill until cooked. Prepare tomato gravy. Combine and simmer."
   }
 ]
