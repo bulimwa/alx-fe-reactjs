@@ -1,15 +1,31 @@
-import { Link, Outlet } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import BlogPost from './pages/BlogPost';
+import ProtectedRoute from './routes/ProtectedRoute';
+import Profile from './components/Profile';
 
-function Profile() {
+function App() {
   return (
-    <div>
-      <h2>Profile Page</h2>
+    <BrowserRouter>
       <nav>
-        <Link to="details">Details</Link> | <Link to="settings">Settings</Link>
+        <Link to="/">Home</Link> | <Link to="/profile">Profile</Link> | <Link to="/blog/42">Blog Post</Link>
       </nav>
-      <Outlet />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/blog/:postId" element={<BlogPost />} />
+        <Route
+          path="/profile/*"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default Profile;
+export default App;
