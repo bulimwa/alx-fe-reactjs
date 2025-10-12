@@ -4,19 +4,13 @@ import * as Yup from 'yup';
 // Yup validation schema
 const validationSchema = Yup.object({
   username: Yup.string()
-    .required('Username is required')
-    .min(3, 'Username must be at least 3 characters')
-    .max(20, 'Username must be less than 20 characters'),
+    .required('Username is required'),
   email: Yup.string()
     .email('Invalid email address')
     .required('Email is required'),
   password: Yup.string()
     .required('Password is required')
     .min(6, 'Password must be at least 6 characters')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-      'Password must contain at least one uppercase letter, one lowercase letter, and one number'
-    )
 });
 
 const FormikForm = () => {
@@ -26,6 +20,7 @@ const FormikForm = () => {
     password: ''
   };
 
+  // Formik validation logic
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       console.log('Form submitted with Formik:', values);
@@ -39,7 +34,7 @@ const FormikForm = () => {
         body: JSON.stringify({
           name: values.username,
           email: values.email,
-          password: values.password,
+          username: values.username,
         }),
       });
 
