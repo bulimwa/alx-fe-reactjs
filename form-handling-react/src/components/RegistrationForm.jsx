@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const RegistrationForm = () => {
-  // Using individual state variables as required
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +18,7 @@ const RegistrationForm = () => {
     setPassword(e.target.value);
   };
 
-  // Basic validation logic - using exact pattern if (!email)
+  // Basic validation logic with exact pattern if (!email)
   const validateForm = () => {
     const newErrors = {};
     
@@ -43,7 +42,6 @@ const RegistrationForm = () => {
     e.preventDefault();
     
     if (validateForm()) {
-      // Mock API call to JSONPlaceholder
       try {
         console.log('Form submitted:', { username, email, password });
         
@@ -64,7 +62,6 @@ const RegistrationForm = () => {
           console.log('Registration successful:', data);
           alert('Registration successful!');
           
-          // Reset form
           setUsername('');
           setEmail('');
           setPassword('');
