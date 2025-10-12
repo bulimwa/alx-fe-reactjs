@@ -4,8 +4,6 @@ import Login from './pages/Login';
 import BlogPost from './pages/BlogPost';
 import ProtectedRoute from './routes/ProtectedRoute';
 import Profile from './components/Profile';
-import ProfileDetails from './components/ProfileDetails';
-import ProfileSettings from './components/ProfileSettings';
 
 function App() {
   return (
@@ -24,10 +22,7 @@ function App() {
               <Profile />
             </ProtectedRoute>
           }
-        >
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
-        </Route>
+        />
       </Routes>
     </BrowserRouter>
   );
