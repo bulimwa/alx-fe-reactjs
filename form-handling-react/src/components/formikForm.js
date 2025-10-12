@@ -2,16 +2,11 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-// Yup validation schema
+// Yup validation schema with exact string().required pattern
 const validationSchema = Yup.object().shape({
-  username: Yup.string()
-    .required('Username is required'),
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-  password: Yup.string()
-    .required('Password is required')
-    .min(6, 'Password must be at least 6 characters')
+  username: Yup.string().required('Username is required'),
+  email: Yup.string().required('Email is required'),
+  password: Yup.string().required('Password is required')
 });
 
 const FormikForm = () => {
@@ -63,8 +58,6 @@ const FormikForm = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-        validateOnBlur={true}
-        validateOnChange={false}
       >
         {({ isSubmitting, errors, touched }) => (
           <Form className="registration-form">
